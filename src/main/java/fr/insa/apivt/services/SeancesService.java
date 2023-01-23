@@ -29,4 +29,8 @@ public class SeancesService {
     public ResponseEntity<List<Seances>> getAllSeances(Pageable pageable) {
         return new ResponseEntity<>(this.seancesRepository.getAllSeances(pageable), HttpStatus.OK);
     }
+
+    public ResponseEntity<List<Seances>> getSeancesProfByCode(Integer codeProf) {
+        return new ResponseEntity<>(this.seancesRepository.findByCodeprofJPQL(codeProf), HttpStatus.OK);
+    }
 }

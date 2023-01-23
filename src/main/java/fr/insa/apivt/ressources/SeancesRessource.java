@@ -28,4 +28,9 @@ public class SeancesRessource {
     public ResponseEntity<List<Seances>> getAllSeances() {
         return this.seancesService.getAllSeances(Pageable.ofSize(50));
     }
+
+    @GetMapping("{codeProf}")
+    public ResponseEntity<List<Seances>> getAllSeancesProf(@PathVariable("codeProf") Integer codeProf) {
+        return this.seancesService.getSeancesProfByCode(codeProf);
+    }
 }
