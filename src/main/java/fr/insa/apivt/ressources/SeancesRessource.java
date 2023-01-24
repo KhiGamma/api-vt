@@ -1,6 +1,7 @@
 package fr.insa.apivt.ressources;
 
 import fr.insa.apivt.models.Seances;
+import fr.insa.apivt.models.dto.SeancesProfDto;
 import fr.insa.apivt.services.SeancesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -29,8 +30,8 @@ public class SeancesRessource {
         return this.seancesService.getAllSeances(Pageable.ofSize(50));
     }
 
-    @GetMapping("{codeProf}")
-    public ResponseEntity<List<Seances>> getAllSeancesProf(@PathVariable("codeProf") Integer codeProf) {
-        return this.seancesService.getSeancesProfByCode(codeProf);
+    @GetMapping("/profs/{codeProf}")
+    public ResponseEntity<List<SeancesProfDto>> getSeancesOfProf(@PathVariable("codeProf") Integer codeProf) {
+        return this.seancesService.getSeancesOfProf(codeProf);
     }
 }

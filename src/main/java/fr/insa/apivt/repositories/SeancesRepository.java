@@ -1,6 +1,7 @@
 package fr.insa.apivt.repositories;
 
 import fr.insa.apivt.models.Seances;
+import fr.insa.apivt.models.dto.SeancesProfDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,11 +15,15 @@ import java.util.Optional;
 public interface SeancesRepository extends JpaRepository<Seances, Integer> {
     public Optional<Seances> findByCodeseance(Integer codeSeance);
 
-    @Query("SELECT s FROM Seances s ORDER BY s.codeseance DESC")
+    @Query("SELECT s " +
+            "FROM Seances s " +
+            "ORDER BY s.codeseance DESC")
     List<Seances> getAllSeances(Pageable pageable);
 
-    @Query("select *\n" +
-            "from seances, seances_profs, ressources_profs\n" +
-            "where r.nom = '?1'")
-    List<Seances> findByCodeprofJPQL(Integer codeProf);
+    @Query(value = "SELECT s.commentaire, s.dateseance, rsp.nom, rsp.codeprof " +
+            "FROM Seances s, ressources_profs as rsp, seances_profs as sp " +
+            "WHERE rsp.codeprof = :codeProf " +
+            "AND sp.coderessource = rsp.codeprof " +
+            "AND sp.codeseance = s.codeseance ", nativeQuery = true)
+    List<SeancesProfDto> getSeancesOfProf(@Param("codeProf") Integer codeProf);
 }
