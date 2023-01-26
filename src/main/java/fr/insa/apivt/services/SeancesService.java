@@ -1,6 +1,7 @@
 package fr.insa.apivt.services;
 
 import fr.insa.apivt.models.Seances;
+import fr.insa.apivt.models.dto.SeancesProfDto;
 import fr.insa.apivt.repositories.SeancesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +23,15 @@ public class SeancesService {
         if (seances.isPresent()) {
             return new ResponseEntity<>(seances.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     public ResponseEntity<List<Seances>> getAllSeances(Pageable pageable) {
         return new ResponseEntity<>(this.seancesRepository.getAllSeances(pageable), HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<SeancesProfDto>> getSeancesOfProf(Integer codeProf) {
+        return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf), HttpStatus.OK);
     }
 }
