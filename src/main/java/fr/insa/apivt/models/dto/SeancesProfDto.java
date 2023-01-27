@@ -4,12 +4,27 @@ import java.sql.Date;
 
 public interface SeancesProfDto {
 
-    String getCommentaire();
+    Integer getCodeSeance();
 
     Date getDateSeance();
 
-    String getNom();
+    Integer getHeureSeance();
+
+    String getNomEns();
+
+    String getCommentaire();
 
     Integer getCodeProf();
 
+    String getNomProf();
+
+    String getNomDiplome();
+
+    Integer getCodeResponsable();
+
+    Integer getCodeGroupe();
+
+    String getNomGroupe();
+
+    String getNomSalle();
 }

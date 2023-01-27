@@ -20,10 +20,20 @@ public interface SeancesRepository extends JpaRepository<Seances, Integer> {
             "ORDER BY s.codeseance DESC")
     List<Seances> getAllSeances(Pageable pageable);
 
-    @Query(value = "SELECT s.commentaire, s.dateseance, rsp.nom, rsp.codeprof " +
-            "FROM Seances s, ressources_profs as rsp, seances_profs as sp " +
+    @Query(value = "SELECT s.codeSeance, s.dateSeance, s.heureSeance, ens.nom nomEns, s.commentaire, rsp.codeProf, rsp.nom nomProf, dip.nom nomDiplome, dip.codeResponsable, rsg.codeGroupe, rsg.nom nomGroupe, rss.nom nomSalle " +
+            "FROM seances as s, seances_profs as sp, ressources_profs as rsp, enseignements as ens, diplomes as dip, seances_groupes as sg, ressources_groupes as rsg, seances_salles as ss, ressources_salles as rss " +
             "WHERE rsp.codeprof = :codeProf " +
-            "AND sp.coderessource = rsp.codeprof " +
-            "AND sp.codeseance = s.codeseance ", nativeQuery = true)
+            "and sp.codeRessource = rsp.codeProf " +
+            "and sp.codeSeance = s.codeSeance " +
+            "and s.codeEnseignement = ens.codeEnseignement " +
+            "and dip.codeDiplome = ens.codeDiplome " +
+            "and sg.codeSeance = s.codeSeance " +
+            "and sg.codeRessource = rsg.codeGroupe " +
+            "and ss.codeSeance = s.codeseance " +
+            "and ss.codeRessource = rss.codeSalle " +
+            "and s.deleted = 0 " +
+            "and sp.deleted = 0 " +
+            "and sg.deleted = 0 " +
+            "and ss.deleted = 0 ", nativeQuery = true)
     List<SeancesProfDto> getSeancesOfProf(@Param("codeProf") Integer codeProf);
 }
