@@ -1,6 +1,7 @@
 package fr.insa.apivt.ressources;
 
 import fr.insa.apivt.models.Seances;
+import fr.insa.apivt.models.SeancesAValider;
 import fr.insa.apivt.models.dto.SeancesProfDto;
 import fr.insa.apivt.services.SeancesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class SeancesRessource {
     }
 
     @PutMapping("{codeSeance}")
-    public ResponseEntity updateSeances(@PathVariable("codeSeance") Integer codeSeance, @RequestBody Seances seances) {
-        return this.seancesService.updateSeance(codeSeance, seances);
+    public ResponseEntity updateSeances(@PathVariable("codeSeance") Integer codeSeance, @RequestBody SeancesAValider seancesAValider) {
+        return this.seancesService.updateSeanceFromSeancesTampon(codeSeance, seancesAValider);
     }
 }

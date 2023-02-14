@@ -1,6 +1,7 @@
 package fr.insa.apivt.services;
 
 import fr.insa.apivt.models.Seances;
+import fr.insa.apivt.models.SeancesAValider;
 import fr.insa.apivt.models.dto.SeancesProfDto;
 import fr.insa.apivt.repositories.SeancesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,10 +37,11 @@ public class SeancesService {
         return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf), HttpStatus.OK);
     }
 
-    public ResponseEntity updateSeance(Integer codeSeance, Seances seances) {
+    public ResponseEntity updateSeanceFromSeancesTampon(Integer codeSeance, SeancesAValider seancesAValider) {
         return this.seancesRepository.findByCodeseance(codeSeance)
                 .map(seances1 -> {
-                    seances1.setCommentaire(seances.getCommentaire());
+                    seances1.setCommentaire(seancesAValider.getCommentaire());
+                    seances1.setDatemodif(new Timestamp(System.currentTimeMillis()));
                     return new ResponseEntity(this.seancesRepository.save(seances1), HttpStatus.ACCEPTED);
                 })
                 .orElseGet(() -> {
