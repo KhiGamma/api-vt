@@ -21,7 +21,7 @@ public interface SeancesRepository extends JpaRepository<Seances, Integer> {
             "ORDER BY s.codeseance DESC")
     List<Seances> getAllSeances(Pageable pageable);
 
-    @Query(value = "SELECT s.codeSeance, s.dateSeance, s.heureSeance, ens.nom nomEns, s.commentaire, rsp.codeProf, rsp.nom nomProf, dip.nom nomDiplome, dip.codeResponsable, rsg.codeGroupe, rsg.nom nomGroupe, rss.nom nomSalle " +
+    @Query(value = "SELECT s.codeSeance, s.dateSeance, s.heureSeance, ens.nom nomEns, s.commentaire, rsp.codeProf, rsp.nom nomProf, dip.codeDiplome, dip.nom nomDiplome, dip.codeResponsable, rsg.codeGroupe, rsg.nom nomGroupe, rss.nom nomSalle " +
             "FROM seances as s, seances_profs as sp, ressources_profs as rsp, enseignements as ens, diplomes as dip, seances_groupes as sg, ressources_groupes as rsg, seances_salles as ss, ressources_salles as rss " +
             "WHERE rsp.codeprof = :codeProf " +
             "and s.dateSeance >= :dateAuPlusTot " +

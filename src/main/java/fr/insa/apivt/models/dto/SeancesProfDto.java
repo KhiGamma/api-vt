@@ -18,6 +18,8 @@ public interface SeancesProfDto {
 
     String getNomProf();
 
+    String getCodeDiplome();
+
     String getNomDiplome();
 
     Integer getCodeResponsable();

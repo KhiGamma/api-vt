@@ -19,6 +19,8 @@ public class SeancesAValiderService {
         SeancesAValider st = SeancesAValider.builder()
                 .codeseance(seancesAValiderToCreate.getCodeseance())
                 .codeprof(codeProf)
+                .coderesponsable(seancesAValiderToCreate.getCodeResponsable())
+                .codediplome(seancesAValiderToCreate.getCodeDiplome())
                 .dateseance(seancesAValiderToCreate.getDateseance())
                 .heureseance(seancesAValiderToCreate.getHeureseance())
                 .datemodif(new Timestamp(System.currentTimeMillis()))

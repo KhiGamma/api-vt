@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("seancesTampon")
+@RequestMapping("seancesAValider")
 public class SeancesAValiderRessource {
 
     @Autowired

@@ -21,6 +21,10 @@ public class SeancesAValider {
 
     private Integer codeprof;
 
+    private Integer coderesponsable;
+
+    private Integer codediplome;
+
     private Date dateseance;
 
     private int heureseance;

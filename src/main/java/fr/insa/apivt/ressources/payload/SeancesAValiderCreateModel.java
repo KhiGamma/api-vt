@@ -13,6 +13,10 @@ public class SeancesAValiderCreateModel {
 
     private Integer codeseance;
 
+    private Integer codeResponsable;
+
+    private Integer codeDiplome;
+
     private Date dateseance;
 
     private int heureseance;
