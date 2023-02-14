@@ -34,8 +34,8 @@ public class SeancesService {
         return new ResponseEntity<>(this.seancesRepository.getAllSeances(pageable), HttpStatus.OK);
     }
 
-    public ResponseEntity<List<SeancesProfDto>> getSeancesOfProf(Integer codeProf) {
-        return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf, new Date(System.currentTimeMillis())), HttpStatus.OK);
+    public ResponseEntity<List<SeancesProfDto>> getSeancesOfProf(Integer codeProf, Date dateAuPlusTot) {
+        return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf, dateAuPlusTot), HttpStatus.OK);
     }
 
     public ResponseEntity updateSeanceFromSeancesTampon(Integer codeSeance, SeancesAValider seancesAValider) {
