@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public interface SeancesRepository extends JpaRepository<Seances, Integer> {
     @Query(value = "SELECT s.codeSeance, s.dateSeance, s.heureSeance, ens.nom nomEns, s.commentaire, rsp.codeProf, rsp.nom nomProf, dip.nom nomDiplome, dip.codeResponsable, rsg.codeGroupe, rsg.nom nomGroupe, rss.nom nomSalle " +
             "FROM seances as s, seances_profs as sp, ressources_profs as rsp, enseignements as ens, diplomes as dip, seances_groupes as sg, ressources_groupes as rsg, seances_salles as ss, ressources_salles as rss " +
             "WHERE rsp.codeprof = :codeProf " +
+            "and s.dateSeance >= :dateAuPlusTot " +
             "and sp.codeRessource = rsp.codeProf " +
             "and sp.codeSeance = s.codeSeance " +
             "and s.codeEnseignement = ens.codeEnseignement " +
@@ -35,5 +37,5 @@ public interface SeancesRepository extends JpaRepository<Seances, Integer> {
             "and sp.deleted = 0 " +
             "and sg.deleted = 0 " +
             "and ss.deleted = 0 ", nativeQuery = true)
-    List<SeancesProfDto> getSeancesOfProf(@Param("codeProf") Integer codeProf);
+    List<SeancesProfDto> getSeancesOfProf(@Param("codeProf") Integer codeProf, @Param("dateAuPlusTot") Date dateAuPlusTot);
 }

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ public class SeancesService {
     }
 
     public ResponseEntity<List<SeancesProfDto>> getSeancesOfProf(Integer codeProf) {
-        return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf), HttpStatus.OK);
+        return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf, new Date(System.currentTimeMillis())), HttpStatus.OK);
     }
 
     public ResponseEntity updateSeanceFromSeancesTampon(Integer codeSeance, SeancesAValider seancesAValider) {
