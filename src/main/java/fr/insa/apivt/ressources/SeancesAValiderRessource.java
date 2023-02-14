@@ -24,4 +24,11 @@ public class SeancesAValiderRessource {
         this.seancesAValiderService.deleteSeancesAValider(codeSeance);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping()
+    public ResponseEntity getSeancesAValider(
+            @RequestParam(name = "codeResponsable") Integer codeResponsable,
+            @RequestParam(name = "codeDiplome") Integer codeDiplome) {
+        return this.seancesAValiderService.getSeancesAValider(codeResponsable, codeDiplome);
+    }
 }

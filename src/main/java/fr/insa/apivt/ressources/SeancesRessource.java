@@ -38,7 +38,7 @@ public class SeancesRessource {
     @GetMapping("/profs/{codeProf}")
     public ResponseEntity<List<SeancesProfDto>> getSeancesOfProf(
             @PathVariable("codeProf") Integer codeProf,
-            @RequestParam(name = "dateAuPlusTot", required = false, defaultValue = "") String dateAuPlusTot) throws ParseException {
+            @RequestParam(name = "date-au-plus-tot", required = false, defaultValue = "") String dateAuPlusTot) throws ParseException {
         if (!dateAuPlusTot.equals("")) {
             System.out.println(new java.sql.Date(formatter.parse(dateAuPlusTot).getTime()));
 
