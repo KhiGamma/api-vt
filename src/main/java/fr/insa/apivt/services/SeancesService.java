@@ -34,4 +34,15 @@ public class SeancesService {
     public ResponseEntity<List<SeancesProfDto>> getSeancesOfProf(Integer codeProf) {
         return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf), HttpStatus.OK);
     }
+
+    public ResponseEntity updateSeance(Integer codeSeance, Seances seances) {
+        return this.seancesRepository.findByCodeseance(codeSeance)
+                .map(seances1 -> {
+                    seances1.setCommentaire(seances.getCommentaire());
+                    return new ResponseEntity(this.seancesRepository.save(seances1), HttpStatus.ACCEPTED);
+                })
+                .orElseGet(() -> {
+                    return new ResponseEntity(HttpStatus.NOT_FOUND);
+                });
+    }
 }

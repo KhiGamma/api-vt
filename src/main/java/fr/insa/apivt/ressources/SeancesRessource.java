@@ -43,21 +43,13 @@ public class SeancesRessource {
             // TODO recherche par code Filière et code matière
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } else{
+            // TODO arranger les doublons avec des listes contenant les salles/profs/groupes ayant la même séance
             return this.seancesService.getSeancesOfProf(codeProf);
         }
     }
 
     @PutMapping("{codeSeance}")
-    public Seances updateSeances(@PathVariable("codeSeance") Integer codeSeance, @RequestBody Seances seances) {
-        return this.seancesService.seancesRepository.findByCodeseance(codeSeance)
-                .map(seances1 -> {
-                    seances1.setCommentaire(seances.getCommentaire());
-                    return this.seancesService.seancesRepository.save(seances1);
-                })
-                //TODO peut être mettre orElseThrow avec une erreur plutot que creer une nouvelle seance si codeSeance pas trouvé
-                .orElseGet(() -> {
-                    seances.setCodeseance(codeSeance);
-                    return this.seancesService.seancesRepository.save(seances);
-                });
+    public ResponseEntity updateSeances(@PathVariable("codeSeance") Integer codeSeance, @RequestBody Seances seances) {
+        return this.seancesService.updateSeance(codeSeance, seances);
     }
 }
