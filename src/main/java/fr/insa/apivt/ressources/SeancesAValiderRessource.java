@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("seancesAValider")
+@RequestMapping("seances-a-valider")
 public class SeancesAValiderRessource {
 
     @Autowired
@@ -27,8 +27,9 @@ public class SeancesAValiderRessource {
 
     @GetMapping()
     public ResponseEntity getSeancesAValider(
-            @RequestParam(name = "codeResponsable") Integer codeResponsable,
-            @RequestParam(name = "codeDiplome") Integer codeDiplome) {
+            @RequestParam(name = "code-responsable") Integer codeResponsable,
+            @RequestParam(name = "code-diplome") Integer codeDiplome) {
+        System.out.println(codeResponsable + " " + codeDiplome);
         return this.seancesAValiderService.getSeancesAValider(codeResponsable, codeDiplome);
     }
 }
