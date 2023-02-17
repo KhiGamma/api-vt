@@ -3,6 +3,7 @@ package fr.insa.apivt.services;
 import fr.insa.apivt.models.SeancesAValider;
 import fr.insa.apivt.repositories.SeancesAValiderRepository;
 import fr.insa.apivt.ressources.payload.SeancesAValiderCreateModel;
+import fr.insa.apivt.ressources.payload.SeancesAValiderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SeancesAValiderService {
@@ -20,12 +22,14 @@ public class SeancesAValiderService {
     public SeancesAValider saveSeancesAValider(SeancesAValiderCreateModel seancesAValiderToCreate, Integer codeProf) {
 
         SeancesAValider st = SeancesAValider.builder()
-                .codeseance(seancesAValiderToCreate.getCodeseance())
+                .codeseance(seancesAValiderToCreate.getCodeSeance())
                 .codeprof(codeProf)
+                .nomprof(seancesAValiderToCreate.getNomProf())
+                .nomens(seancesAValiderToCreate.getNomEns())
                 .coderesponsable(seancesAValiderToCreate.getCodeResponsable())
                 .codediplome(seancesAValiderToCreate.getCodeDiplome())
-                .dateseance(seancesAValiderToCreate.getDateseance())
-                .heureseance(seancesAValiderToCreate.getHeureseance())
+                .dateseance(seancesAValiderToCreate.getDateSeance())
+                .heureseance(seancesAValiderToCreate.getHeureSeance())
                 .datemodif(new Timestamp(System.currentTimeMillis()))
                 .commentaire(seancesAValiderToCreate.getCommentaire())
                 .build();
@@ -38,6 +42,10 @@ public class SeancesAValiderService {
     }
 
     public ResponseEntity getSeancesAValider(Integer codeResponsable, Integer codeDiplome) {
-        return new ResponseEntity(this.seancesAValiderRepository.getSeancesAValider(codeResponsable, codeDiplome), HttpStatus.OK);
+        List<SeancesAValider> seancesAValider = this.seancesAValiderRepository.getSeancesAValider(codeResponsable, codeDiplome);
+
+        List<SeancesAValiderResponse> seancesAValiderResponse = seancesAValider.stream().map(SeancesAValiderResponse::new).collect(Collectors.toList());
+
+        return new ResponseEntity(seancesAValiderResponse, HttpStatus.OK);
     }
 }

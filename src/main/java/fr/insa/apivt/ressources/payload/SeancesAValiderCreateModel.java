@@ -11,15 +11,19 @@ import java.sql.Timestamp;
 @Setter
 public class SeancesAValiderCreateModel {
 
-    private Integer codeseance;
+    private Integer codeSeance;
 
     private Integer codeResponsable;
 
     private Integer codeDiplome;
 
-    private Date dateseance;
+    private String nomProf;
 
-    private int heureseance;
+    private String nomEns;
+
+    private Date dateSeance;
+
+    private int heureSeance;
 
     private String commentaire;
 
