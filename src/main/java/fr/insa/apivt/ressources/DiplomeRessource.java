@@ -1,6 +1,6 @@
 package fr.insa.apivt.ressources;
 
-import fr.insa.apivt.models.dto.ResponsableDiplomeDto;
+import fr.insa.apivt.ressources.dto.ResponsableDiplomeDto;
 import fr.insa.apivt.services.DiplomesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

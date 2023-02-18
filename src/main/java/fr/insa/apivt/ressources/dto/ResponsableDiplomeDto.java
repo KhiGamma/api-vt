@@ -1,4 +1,4 @@
-package fr.insa.apivt.models.dto;
+package fr.insa.apivt.ressources.dto;
 
 public interface ResponsableDiplomeDto {
 

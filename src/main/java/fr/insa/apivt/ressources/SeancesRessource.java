@@ -2,11 +2,10 @@ package fr.insa.apivt.ressources;
 
 import fr.insa.apivt.models.Seances;
 import fr.insa.apivt.models.SeancesAValider;
-import fr.insa.apivt.models.dto.SeancesProfDto;
+import fr.insa.apivt.ressources.dto.SeancesProfDto;
 import fr.insa.apivt.services.SeancesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

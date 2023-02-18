@@ -2,7 +2,7 @@ package fr.insa.apivt.services;
 
 import fr.insa.apivt.models.Seances;
 import fr.insa.apivt.models.SeancesAValider;
-import fr.insa.apivt.models.dto.SeancesProfDto;
+import fr.insa.apivt.ressources.dto.SeancesProfDto;
 import fr.insa.apivt.repositories.SeancesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
