@@ -1,7 +1,7 @@
 package fr.insa.apivt.repositories;
 
 import fr.insa.apivt.models.Seances;
-import fr.insa.apivt.ressources.dto.SeancesProfDto;
+import fr.insa.apivt.ressources.payload.SeancesProfDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

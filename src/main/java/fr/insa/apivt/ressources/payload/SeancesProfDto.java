@@ -1,4 +1,4 @@
-package fr.insa.apivt.ressources.dto;
+package fr.insa.apivt.ressources.payload;
 
 import java.sql.Date;
 

@@ -1,7 +1,7 @@
 package fr.insa.apivt.repositories;
 
 import fr.insa.apivt.models.Reservations;
-import fr.insa.apivt.ressources.dto.ReservationsProfDto;
+import fr.insa.apivt.ressources.payload.ReservationsProfDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

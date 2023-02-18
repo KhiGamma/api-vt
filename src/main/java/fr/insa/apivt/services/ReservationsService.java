@@ -1,6 +1,6 @@
 package fr.insa.apivt.services;
 
-import fr.insa.apivt.ressources.dto.ReservationsProfDto;
+import fr.insa.apivt.ressources.payload.ReservationsProfDto;
 import fr.insa.apivt.repositories.ReservationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
