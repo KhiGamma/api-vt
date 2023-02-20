@@ -26,6 +26,4 @@ public class SeancesAValiderCreateModel {
     private int heureSeance;
 
     private String commentaire;
-
-    private Integer etat;
 }

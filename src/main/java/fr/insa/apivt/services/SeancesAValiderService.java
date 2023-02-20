@@ -32,6 +32,7 @@ public class SeancesAValiderService {
                 .heureseance(seancesAValiderToCreate.getHeureSeance())
                 .datemodif(new Timestamp(System.currentTimeMillis()))
                 .commentaire(seancesAValiderToCreate.getCommentaire())
+                .etat(0)
                 .build();
 
         return this.seancesAValiderRepository.save(st);
@@ -44,10 +45,16 @@ public class SeancesAValiderService {
     public ResponseEntity getSeancesAValiderForResponsable(Integer codeResponsable, Integer codeDiplome) {
         List<SeancesAValider> seancesAValider = this.seancesAValiderRepository.getSeancesAValiderForResponsable(codeResponsable, codeDiplome);
 
-        List<SeancesAValiderResponse> seancesAValiderResponse = seancesAValider.stream().map(SeancesAValiderResponse::new).collect(Collectors.toList());
-
-        return new ResponseEntity(seancesAValiderResponse, HttpStatus.OK);
+        return new ResponseEntity(this.convertToListOfResponse(seancesAValider), HttpStatus.OK);
     }
 
+    public ResponseEntity getSeancesAValiderOfProf(Integer codeProf) {
+        List<SeancesAValider> seancesAValider = this.seancesAValiderRepository.getSeancesAValiderOfProf(codeProf);
 
+        return new ResponseEntity(this.convertToListOfResponse(seancesAValider), HttpStatus.OK);
+    }
+
+    private List<SeancesAValiderResponse> convertToListOfResponse(List<SeancesAValider> seancesAValiders) {
+        return seancesAValiders.stream().map(SeancesAValiderResponse::new).collect(Collectors.toList());
+    }
 }

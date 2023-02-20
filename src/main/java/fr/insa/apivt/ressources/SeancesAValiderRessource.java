@@ -25,11 +25,16 @@ public class SeancesAValiderRessource {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping()
-    public ResponseEntity getSeancesAValiderForresponsable(
+    @GetMapping("/responsables")
+    public ResponseEntity getSeancesAValiderForResponsable(
             @RequestParam(name = "code-responsable") Integer codeResponsable,
             @RequestParam(name = "code-diplome") Integer codeDiplome) {
-        System.out.println(codeResponsable + " " + codeDiplome);
         return this.seancesAValiderService.getSeancesAValiderForResponsable(codeResponsable, codeDiplome);
+    }
+
+    @GetMapping("/profs")
+    public ResponseEntity getSeancesAValiderOfProf(
+            @RequestParam(name = "code-prof") Integer codeProf) {
+        return this.seancesAValiderService.getSeancesAValiderOfProf(codeProf);
     }
 }
