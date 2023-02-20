@@ -38,6 +38,6 @@ public class SeancesAValider {
 
     private String commentaire;
 
-    @Column(columnDefinition = "TINYINT(1)")
-    private boolean controle;
+    @Column(columnDefinition = "TINYINT(2)")
+    private Integer etat;
 }

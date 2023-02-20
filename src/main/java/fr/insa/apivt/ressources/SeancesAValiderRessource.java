@@ -26,10 +26,10 @@ public class SeancesAValiderRessource {
     }
 
     @GetMapping()
-    public ResponseEntity getSeancesAValider(
+    public ResponseEntity getSeancesAValiderForresponsable(
             @RequestParam(name = "code-responsable") Integer codeResponsable,
             @RequestParam(name = "code-diplome") Integer codeDiplome) {
         System.out.println(codeResponsable + " " + codeDiplome);
-        return this.seancesAValiderService.getSeancesAValider(codeResponsable, codeDiplome);
+        return this.seancesAValiderService.getSeancesAValiderForResponsable(codeResponsable, codeDiplome);
     }
 }

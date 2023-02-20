@@ -41,11 +41,13 @@ public class SeancesAValiderService {
         this.seancesAValiderRepository.deleteById(codeSeance);
     }
 
-    public ResponseEntity getSeancesAValider(Integer codeResponsable, Integer codeDiplome) {
-        List<SeancesAValider> seancesAValider = this.seancesAValiderRepository.getSeancesAValider(codeResponsable, codeDiplome);
+    public ResponseEntity getSeancesAValiderForResponsable(Integer codeResponsable, Integer codeDiplome) {
+        List<SeancesAValider> seancesAValider = this.seancesAValiderRepository.getSeancesAValiderForResponsable(codeResponsable, codeDiplome);
 
         List<SeancesAValiderResponse> seancesAValiderResponse = seancesAValider.stream().map(SeancesAValiderResponse::new).collect(Collectors.toList());
 
         return new ResponseEntity(seancesAValiderResponse, HttpStatus.OK);
     }
+
+
 }

@@ -12,6 +12,7 @@ public interface SeancesAValiderRepository extends JpaRepository<SeancesAValider
             "FROM SeancesAValider s " +
             "WHERE s.coderesponsable = :codeResponsable " +
             "AND s.codediplome = :codeDiplome " +
+            "AND s.etat = 0 " +
             "ORDER BY s.dateseance ASC ")
-    List<SeancesAValider> getSeancesAValider(Integer codeResponsable, Integer codeDiplome);
+    List<SeancesAValider> getSeancesAValiderForResponsable(Integer codeResponsable, Integer codeDiplome);
 }

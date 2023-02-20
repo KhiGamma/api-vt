@@ -34,7 +34,7 @@ public class SeancesAValiderResponse {
 
     private String commentaire;
 
-    private boolean controle;
+    private Integer etat;
 
     public SeancesAValiderResponse(SeancesAValider seancesAValider) {
         this.codeSeance = seancesAValider.getCodeseance();
@@ -47,6 +47,6 @@ public class SeancesAValiderResponse {
         this.heureSeance = seancesAValider.getHeureseance();
         this.dateModif = seancesAValider.getDatemodif();
         this.commentaire = seancesAValider.getCommentaire();
-        this.controle = seancesAValider.isControle();
+        this.etat = seancesAValider.getEtat();
     }
 }

@@ -27,5 +27,5 @@ public class SeancesAValiderCreateModel {
 
     private String commentaire;
 
-    private boolean controle;
+    private Integer etat;
 }
