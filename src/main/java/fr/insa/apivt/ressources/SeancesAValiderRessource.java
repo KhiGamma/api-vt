@@ -19,10 +19,10 @@ public class SeancesAValiderRessource {
         return this.seancesAValiderService.saveSeancesAValider(seancesAValiderToCreate, codeProf);
     }
 
-    @DeleteMapping("{codeSeance}")
-    public ResponseEntity deleteSeancesAValider(@PathVariable("codeSeance") Integer codeSeance) {
-        this.seancesAValiderService.deleteSeancesAValider(codeSeance);
-        return ResponseEntity.ok().build();
+    @PutMapping("/{codeSeance}")
+    public ResponseEntity updateSeancesAValider(@PathVariable("codeSeance") Integer codeSeance,
+            @RequestParam(name = "etat") Integer etat) {
+        return this.seancesAValiderService.updateSeancesAValider(codeSeance, etat);
     }
 
     @GetMapping("/responsables")

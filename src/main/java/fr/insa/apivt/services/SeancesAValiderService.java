@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,6 +20,18 @@ public class SeancesAValiderService {
 
     @Autowired
     public SeancesAValiderRepository seancesAValiderRepository;
+
+    enum Etat {
+        EN_ATTENTE(0),
+        ACCEPTEE(1),
+        REFUSEE(2);
+
+        Integer label;
+
+        Etat (Integer label) {
+            this.label = label;
+        }
+    }
 
     public SeancesAValider saveSeancesAValider(SeancesAValiderCreateModel seancesAValiderToCreate, Integer codeProf) {
 
@@ -38,8 +52,22 @@ public class SeancesAValiderService {
         return this.seancesAValiderRepository.save(st);
     }
 
-    public void deleteSeancesAValider(Integer codeSeance) {
-        this.seancesAValiderRepository.deleteById(codeSeance);
+    public ResponseEntity updateSeancesAValider(Integer codeSeance, Integer etat) {
+
+        if (etat.equals(Etat.EN_ATTENTE.label) || !etatValide(etat)) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
+        Optional<SeancesAValider> seancesAValider = this.seancesAValiderRepository.getSeancesAValiderByCodeseance(codeSeance);
+
+        if (seancesAValider.isPresent()) {
+            seancesAValider.get().setEtat(etat);
+            this.seancesAValiderRepository.save(seancesAValider.get());
+
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     public ResponseEntity getSeancesAValiderForResponsable(Integer codeResponsable, Integer codeDiplome) {
@@ -56,5 +84,9 @@ public class SeancesAValiderService {
 
     private List<SeancesAValiderResponse> convertToListOfResponse(List<SeancesAValider> seancesAValiders) {
         return seancesAValiders.stream().map(SeancesAValiderResponse::new).collect(Collectors.toList());
+    }
+
+    private boolean etatValide(Integer etat) {
+        return Arrays.stream(Etat.values()).anyMatch(value -> value.label.equals(etat));
     }
 }

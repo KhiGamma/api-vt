@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SeancesAValiderRepository extends JpaRepository<SeancesAValider, Integer> {
 
@@ -22,4 +23,6 @@ public interface SeancesAValiderRepository extends JpaRepository<SeancesAValider
             "AND s.etat = 0 " +
             "ORDER BY s.dateseance ASC ")
     List<SeancesAValider> getSeancesAValiderOfProf(Integer codeProf);
+
+    Optional<SeancesAValider> getSeancesAValiderByCodeseance(Integer codeSeance);
 }
