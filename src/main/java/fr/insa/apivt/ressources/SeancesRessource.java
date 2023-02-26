@@ -43,7 +43,15 @@ public class SeancesRessource {
 
             return this.seancesService.getSeancesOfProf(codeProf, new java.sql.Date(formatter.parse(dateAuPlusTot).getTime()));
         } else{
-            // TODO arranger les doublons avec des listes contenant les salles/profs/groupes ayant la même séance
+            /*
+            TODO arranger les doublons avec des listes contenant les salles/profs/groupes ayant la même séance
+            Si une séance à lieux avec deux groupes, dans deux salles nous auront :
+            - une séance avec le groupe 1 et la salle 1;
+            - une séance avec le groupe 1 et la salle 2;
+            - une séance avec le groupe 2 et la salle 1;
+            - une séance avec le groupe 2 et la salle 2;
+            Idem pour les enseignants etc.
+             */
             return this.seancesService.getSeancesOfProf(codeProf, new Date(System.currentTimeMillis()));
         }
     }

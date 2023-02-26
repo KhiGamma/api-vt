@@ -15,6 +15,12 @@ public class DiplomesService {
     @Autowired
     public DiplomesRepository diplomesRepository;
 
+    /**
+     * Récupère les diplômes encadré par un enseignant en fonction de son codeProf.
+     * @param codeProf code de l'enseignant responsable.
+     * @return une ResponseEntity donc le corps est une liste de DTO
+     * et un code HTTP indiquant le bon déroulement de l'opération
+     */
     public ResponseEntity<List<ResponsableDiplomeDto>> getDiplomes(Integer codeProf) {
         return  new ResponseEntity<>(this.diplomesRepository.getDiplomes(codeProf), HttpStatus.OK);
     }
