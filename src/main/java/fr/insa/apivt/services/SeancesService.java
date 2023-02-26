@@ -38,8 +38,8 @@ public class SeancesService {
         return new ResponseEntity<>(this.seancesRepository.getSeancesOfProf(codeProf, dateAuPlusTot), HttpStatus.OK);
     }
 
-    public ResponseEntity updateSeanceFromSeancesTampon(Integer codeSeance, SeancesAValider seancesAValider) {
-        return this.seancesRepository.findByCodeseance(codeSeance)
+    public ResponseEntity updateSeanceFromSeancesTampon(SeancesAValider seancesAValider) {
+        return this.seancesRepository.findByCodeseance(seancesAValider.getCodeseance())
                 .map(seances1 -> {
                     seances1.setCommentaire(seancesAValider.getCommentaire());
                     seances1.setDatemodif(new Timestamp(System.currentTimeMillis()));
