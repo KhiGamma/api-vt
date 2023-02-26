@@ -48,8 +48,8 @@ public class SeancesRessource {
         }
     }
 
-    @PutMapping()
-    public ResponseEntity updateSeances(@RequestBody SeancesAValider seancesAValider) {
-        return this.seancesService.updateSeanceFromSeancesTampon(seancesAValider);
+    @PutMapping("{codeSeance}")
+    public ResponseEntity updateSeances(@PathVariable("codeSeance") Integer codeSeance, @RequestBody SeancesAValider seancesAValider) {
+        return this.seancesService.updateSeanceFromSeancesTampon(codeSeance, seancesAValider);
     }
 }
